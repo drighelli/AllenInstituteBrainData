@@ -1,0 +1,28 @@
+Package: AllenInstituteBrainData
+Title: Brain Data from Allen Institute Brain Atlas
+Version: 0.99.0
+Date: 2021-07-13
+Authors@R: c(
+    person(given = "Dario",
+           family = "Righelli",
+           role = c("aut", "cre", "mnt"),
+           email = "dario.righelli@gmail.com"),
+    person(given = "Davide",
+           family = "Risso",
+           role = c("aut"),
+           email = "risso.davide@gmail.com")
+    )
+Description: Brain reference data from Allen Institute Brain Atlas.
+License: `use_mit_license()`
+BugReports: https://support.bioconductor.org/t/AllenInstituteDemo
+biocViews: ExperimentHub, ExperimentData, SingleCellData, RNASeqData
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    ExperimentHub, HDF5Array, SummarizedExperiment
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+
