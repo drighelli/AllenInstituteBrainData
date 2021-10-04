@@ -29,4 +29,4 @@ main.data <- data.frame(
     DispatchClass=c("H5File", "Rds")
 )
 
-write.csv(file="inst/extdata/metadata.csv", main.data, row.names=FALSE)
+# write.csv(file="inst/extdata/metadata.csv", main.data, row.names=FALSE)
