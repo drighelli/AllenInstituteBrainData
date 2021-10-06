@@ -20,6 +20,11 @@
     return (BiocFileCache::BiocFileCache(cache))
 }
 
+.createRName <- function(single.mtd)
+{
+    paste0(single.mtd[["DataType"]], "_", gsub(" ", "_", single.mtd[["Title"]]))
+}
+
 .addResource <- function(mtd.dt, verbose=TRUE)
 {
     sub.mtd <- .getMetadataDataType(mtd.dt)
@@ -27,7 +32,7 @@
     cache <- .getCache()
     ladds <- lapply(seq_along(urls), function(i)
     {
-        rnamei <- gsub(" ", "_", sub.mtd[["Title"]][i])
+        rnamei <- .createRName(sub.mtd[i,])
         if ( !.checkCacheEntry(rnamei, basename(urls[i])) )
         {
             if(verbose) message("Adding \"", rnamei, "\" to cache.\n",
@@ -49,7 +54,7 @@
     df <- BiocFileCache::bfcinfo(cache)
     if ( rname %in% df$rname )
     {
-        if ( length(grep(basename(filename), basename(df$rpath))) != 0 )
+        # if ( length(grep(basename(filename), basename(df$rpath))) != 0 )
             return(TRUE)
     }
     return(FALSE)
@@ -59,15 +64,18 @@
 {
     cache <- .getCache()
     sub.mtd <- .getMetadataDataType(mtd.dt)
-    if ( length(grep(sub.mtd, bfcinfo(cache)$rname)) == 0 )
+
+    if ( length(grep(mtd.dt, bfcinfo(cache)$rname)) == 0 )
     {
         .addResource(mtd.dt=mtd.dt)
     }
-    ladds <- lapply(seq_along(url), function(i)
+
+    ladds <- lapply(seq_len(nrow(sub.mtd)), function(i)
     {
-        rnamei <- gsub(" ", "_", sub.mtd[["Title"]][i])
+        rnamei <- .createRName(sub.mtd[i,])
         res <- BiocFileCache::bfcquery(cache, rnamei)
     })
+    ladds <- do.call(rbind, ladds)
     return(ladds)
 }
 
