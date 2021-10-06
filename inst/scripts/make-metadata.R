@@ -33,7 +33,7 @@ main.data <- data.frame(
 
 b.data <- data.frame(
     DataType="test",
-    Title = c("test1"),
+    Title = c("test1", "test2"),
     Description = c(
         "Single-cell RNA-seq data for mouse brain annotation 2020"
     ),
