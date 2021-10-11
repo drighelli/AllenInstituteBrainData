@@ -1,4 +1,5 @@
-
+#' @importFrom tools R_user_dir
+#' @importFrom BiocFileCache BiocFileCache
 .initCache <-
     function(path=tools::R_user_dir("AllenInstituteBrainData", "cache"),
         verbose=FALSE)
@@ -8,16 +9,24 @@
     invisible(bfc)
 }
 
+#' @importFrom BiocFileCache BiocFileCache removebfc
 .rmCache <- function(ask=TRUE)
 {
     cache <- getOption("AIBDCache")
     BiocFileCache::removebfc(BiocFileCache::BiocFileCache(cache), ask=ask)
 }
 
+#' @importFrom BiocFileCache BiocFileCache
 .getCache <- function()
 {
     cache <- getOption("AIBDCache")
     return (BiocFileCache::BiocFileCache(cache))
+}
+
+#' @importFrom BiocFileCache bfccache
+.getCachePath <- function()
+{
+    return(BiocFileCache::bfccache(.getCache()))
 }
 
 .createRName <- function(single.mtd)
@@ -25,6 +34,7 @@
     paste0(single.mtd[["DataType"]], "_", gsub(" ", "_", single.mtd[["Title"]]))
 }
 
+#' @importFrom BiocFileCache bfcadd
 .addResource <- function(mtd.dt, verbose=TRUE)
 {
     sub.mtd <- .getMetadataDataType(mtd.dt)
@@ -48,6 +58,7 @@
     return(ladds)
 }
 
+#' @importFrom BiocFileCache bfcinfo
 .checkCacheEntry <- function(rname, filename)
 {
     cache <- .getCache()
@@ -60,12 +71,13 @@
     return(FALSE)
 }
 
+#' @importFrom BiocFileCache bfcinfo bfcquery
 .getResource <- function(mtd.dt)
 {
     cache <- .getCache()
     sub.mtd <- .getMetadataDataType(mtd.dt)
 
-    if ( length(grep(mtd.dt, bfcinfo(cache)$rname)) == 0 )
+    if ( length(grep(mtd.dt, BiocFileCache::bfcinfo(cache)$rname)) == 0 )
     {
         .addResource(mtd.dt=mtd.dt)
     }
