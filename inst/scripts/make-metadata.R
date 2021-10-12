@@ -6,6 +6,7 @@
 
 
 main.data <- data.frame(
+    DataType="Allen_Mouse_2020",
     Title = c("Brain Mouse 2020 assay",
               "Brain Mouse 2020 annotation"),
     Description = c(
@@ -29,4 +30,27 @@ main.data <- data.frame(
     DispatchClass=c("H5File", "Rds")
 )
 
-write.csv(file="inst/extdata/metadata.csv", main.data, row.names=FALSE)
+
+b.data <- data.frame(
+    DataType="test",
+    Title = c("test1", "test2"),
+    Description = c(
+        "Single-cell RNA-seq data for mouse brain annotation 2020"
+    ),
+    Location_Prefix= "https://www.dundeecity.gov.uk/" ,
+    RDataPath = c("sites/default/files/publications/civic_renewal_forms.zip"),
+    BiocVersion="3.13",
+    Genome="mm10",
+    SourceType=c("TEXT"),
+    SourceUrl="mine",
+    SourceVersion="1.0.0",
+    Species="Mus musculus",
+    TaxonomyId="10090",
+    Coordinate_1_based=TRUE,
+    DataProvider="Allen Institue for Brain Science",
+    Maintainer="Dario Righelli <dario.righelli@gmail.com>",
+    RDataClass=c("no"),
+    DispatchClass=c("TEXT")
+)
+
+ # write.csv(file="inst/extdata/metadata.csv", rbind(main.data,b.data), row.names=FALSE)
