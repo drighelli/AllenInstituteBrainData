@@ -22,5 +22,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports: 
     ExperimentHub, HDF5Array, SummarizedExperiment, BiocFileCache, S4Vectors
+VignetteBuilder: knitr
 Suggests: 
+    BiocStyle, knitr, rmarkdown,
     testthat (>= 3.0.0)

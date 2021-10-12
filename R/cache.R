@@ -93,9 +93,9 @@
 
 .readMetadata <- function()
 {
-    # filepath <- system.file("extdata/metadata.csv",
-    #     package="AllenInstituteBrainData")
-    filepath <- "inst/extdata/metadata.csv"
+    filepath <- system.file("extdata/metadata.csv",
+        package="AllenInstituteBrainData")
+    # filepath <- "inst/extdata/metadata.csv"
     mtd <- read.csv(file=filepath, header=TRUE)
     return(mtd)
 }

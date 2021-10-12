@@ -1,0 +1,52 @@
+---
+title: "Allen Institute Brain Data"
+author:
+- name: Dario Righelli
+  affiliation: Department of Statistical Sciences, University of Padova
+  email: dario.righelli@gmail.com
+package: AllenInstituteBrainData
+output:
+    BiocStyle::html_document
+abstract: |
+    This package retrieves data from Allen Brain Institute NEMO repository and
+    shape them in a Bioconductor data structure form for further use, such as
+    data investigation and analysis or as cell annotation reference.
+vignette: |
+    %\VignetteIndexEntry{Allen Institute Brain Data}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
+
+# Description
+
+This package retrieves data from Allen Brain Institute NEMO repository and shape
+them in a Bioconductor data structure form for further use, such as data 
+investigation and analysis or as cell annotation reference.
+
+# Available Datasets
+
+A list of available datasets and associated `DataType`:
+
++ `Allen_Mouse_2020` : retrieves the Zeng dataset of 31053 features and 1169213 
+cells for mouse brain data related to year 2020. (ref to be specified)
+
+
+# Retrieving Data
+
+To retrieve data simply use the `AllenInstituteBrainData` function, it queries
+the NeMO Allen Institute database for the specified `DataType` argument.
+The function returns a `SingleCellExperiment` data object.
+
+```{r}
+library(AllenInstituteBrainData)
+(sce <- AllenInstituteBrainData("Allen_Mouse_2020"))
+```
+
+
+
+
+# Session info {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
