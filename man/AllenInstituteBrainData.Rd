@@ -5,7 +5,7 @@
 \title{AllenInstituteBrainData}
 \usage{
 AllenInstituteBrainData(
-  dataset = c("Allen_Mouse_2020", "test"),
+  dataset = c("Allen_Mouse_2020"),
   verbose = TRUE,
   DataClass = c("SingleCellExperiment", "SummarizedExperiment")
 )

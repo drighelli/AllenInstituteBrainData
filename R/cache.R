@@ -1,5 +1,6 @@
 #' @importFrom tools R_user_dir
 #' @importFrom BiocFileCache BiocFileCache
+#' @export
 .initCache <-
     function(path=tools::R_user_dir("AllenInstituteBrainData", "cache"),
         verbose=FALSE)
