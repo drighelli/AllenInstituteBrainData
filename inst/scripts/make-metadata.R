@@ -31,26 +31,58 @@ main.data <- data.frame(
 )
 
 
-b.data <- data.frame(
-    DataType="test",
-    Title = c("test1", "test2"),
+main.data21 <- data.frame(
+    DataType="Allen_Mouse_2021",
+    Title = c("Brain Mouse 2021 assay",
+              "Brain Mouse 2021 annotation"),
     Description = c(
-        "Single-cell RNA-seq data for mouse brain annotation 2020"
+        "Single-cell RNA-seq data for mouse brain annotation 2021",
+        "Single-cell RNA-seq data for mouse brain annotation 2021"
     ),
-    Location_Prefix= "https://www.dundeecity.gov.uk/" ,
-    RDataPath = c("sites/default/files/publications/civic_renewal_forms.zip"),
+
+    Location_Prefix= "https://idk-etl-prod-download-bucket.s3.amazonaws.com/" ,
+    RDataPath = c("aibs_mouse_ctx-hpf_10x/expression_matrix.hdf5",
+                  "aibs_mouse_ctx-hpf_10x/metadata.csv"),
     BiocVersion="3.13",
     Genome="mm10",
-    SourceType=c("TEXT"),
-    SourceUrl="mine",
+    SourceType=c("HDF5", "tar.gz"),
+    SourceUrl="http://portal.brain-map.org/",
     SourceVersion="1.0.0",
     Species="Mus musculus",
     TaxonomyId="10090",
     Coordinate_1_based=TRUE,
     DataProvider="Allen Institue for Brain Science",
     Maintainer="Dario Righelli <dario.righelli@gmail.com>",
-    RDataClass=c("no"),
-    DispatchClass=c("TEXT")
+    RDataClass=c("HDF5Array", "SummarizedExperiment"),
+    DispatchClass=c("H5File", "Rds")
 )
+write.csv(file="inst/extdata/metadata.csv", rbind(main.data,main.data21), row.names=FALSE)
 
- # write.csv(file="inst/extdata/metadata.csv", rbind(main.data,b.data), row.names=FALSE)
+
+
+al <- read.csv("/Users/inzirio/Downloads/CTX_Hip_anno_SSv4/CTX_Hip_anno_SSv4.csv")
+
+library(HDF5Array)
+h5smrt <- HDF5Array::
+
+
+table(al$subclass_label)
+
+mtd <- read.csv("")
+
+load("~/Downloads/dend.RData")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
