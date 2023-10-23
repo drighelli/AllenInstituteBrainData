@@ -1,6 +1,6 @@
 Package: AllenInstituteBrainData
 Title: Brain Data from Allen Institute Brain Atlas
-Version: 0.99.0
+Version: 0.99.1
 Date: 2021-07-13
 Authors@R: c(
     person(given = "Dario",
