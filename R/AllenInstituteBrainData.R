@@ -44,8 +44,13 @@ AllenInstituteBrainData <- function(dataset=c("Allen_Mouse_2020", "Allen_Mouse_2
             cnts <- t(cnts)
         }
     }
+    if(is.null(anno$sample_name)) anno$sample_name <- rownames(anno)
     idxs <- match(as.vector(smpls), anno$sample_name)
+    if ( length(which(is.na(idxs))) != 0 ) idxs <- idxs[-which(is.na(idxs))]
+    idxs1 <- match(anno$sample_name, as.vector(smpls))
+    if ( length(which(is.na(idxs1))) != 0 ) idxs1 <- idxs1[-which(is.na(idxs1))]
     anno <- anno[idxs,]
+    cnts <- cnts[,idxs1]
     sceH5Array <- SingleCellExperiment::SingleCellExperiment(
         assays=S4Vectors::SimpleList(counts=cnts), rowData=genes,
         colData=anno)
